@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 99cf4bce6e7448e41b73f342c0fc2075
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Pixeldust Expanded
+  fontNames:
+  - Pixeldust Expanded
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 265a5da8caee97d4981cd57fbf1f475d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
