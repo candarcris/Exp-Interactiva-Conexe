@@ -74,7 +74,12 @@ public class PlayFabManager : MonoBehaviour
     void OnDataRecieved(GetUserDataResult result)
     {
         //solucionar el problema de revisar si el usuario esta o no registrado al comienzo del juego
-        //cambiar if con los valores de los campos
+        
+        if(result.Data.ContainsKey("Nombre"))
+        {
+            nombreVisitante = result.Data["Nombre"].Value;
+        }
+        
         Debug.Log("Recieved user data");
         if(result.Data.ContainsKey("Nombre") && result.Data["Nombre"].Value != null && result.Data.ContainsKey("Correo") && result.Data["Correo"].Value != null)
         {
@@ -93,7 +98,6 @@ public class PlayFabManager : MonoBehaviour
             Debug.Log("Usuario nuevo / Datos incompletos");
             dialogoEventos.UsuarioNoRegistrado();
         }
-        //nombreVisitante = result.Data["Nombre"].Value;
     }
 
     

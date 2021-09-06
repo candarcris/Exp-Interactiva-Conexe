@@ -80,7 +80,7 @@ public class DialogoEventos : MonoBehaviour
     {
         Debug.Log("Haciendo cosas de Reloj3");
         Debug.Log(PlayFabManager.nombreVisitante);
-        textValueC5 = "Bienvenido de vuelta, recuerda seleccionar alguna de \n las dos puertas para continuar explorando nuestra empresa.";
+        textValueC5 = "Bienvenido de vuelta " + PlayFabManager.nombreVisitante + ", recuerda seleccionar alguna de \n las dos puertas para continuar explorando nuestra empresa.";
         StartCoroutine(Reloj3());
     }
 
