@@ -6918,7 +6918,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.029999986, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 4502966351147730416}
+  - {fileID: 8772900681885284539}
   m_Father: {fileID: 6277813076821946423}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!23 &3080621618759274478
@@ -8829,12 +8831,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5503507992317868843}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
-  m_LocalPosition: {x: 0, y: 0.029999986, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6277813076821946423}
+  m_Father: {fileID: 3064605872449855852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4512659299316623245
 Transform:
@@ -10027,7 +10029,7 @@ GameObject:
   - component: {fileID: 6771635047487306179}
   - component: {fileID: 7937272170731288953}
   m_Layer: 0
-  m_Name: Cylinder.025
+  m_Name: TapaIdea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11277,12 +11279,10 @@ Transform:
   - {fileID: 3798325571945944475}
   - {fileID: 4610390685970373698}
   - {fileID: 6707070250192668765}
-  - {fileID: 4502966351147730416}
   - {fileID: 8771274895071751815}
   - {fileID: 5066794077035777458}
   - {fileID: 3790064698523271010}
   - {fileID: 1698683646201871937}
-  - {fileID: 8772900681885284539}
   - {fileID: 7984343641146545933}
   - {fileID: 8529210905280083726}
   - {fileID: 5985953808870605123}
@@ -12723,13 +12723,36 @@ GameObject:
   - component: {fileID: 3064605872449855852}
   - component: {fileID: 6804814868729886599}
   - component: {fileID: 1583910366350474684}
+  - component: {fileID: 7071560954393075185}
   m_Layer: 0
-  m_Name: Cube.062
+  m_Name: CuerdasIdea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!95 &7071560954393075185
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7071560954393075184}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0f2a75aee4ea964ea3ab517ed68e7d9, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &7141304344663109520
 Transform:
   m_ObjectHideFlags: 0
@@ -13681,7 +13704,7 @@ GameObject:
   - component: {fileID: 5708775052386599420}
   - component: {fileID: 7495608863874019292}
   m_Layer: 0
-  m_Name: Cylinder.030
+  m_Name: VidrioIdea
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15785,12 +15808,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7727679145910109433}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.6974965, y: 0.11618442, z: 0.11618444, w: 0.69749635}
-  m_LocalPosition: {x: -3.0682058, y: 0.03, z: -0.6251373}
-  m_LocalScale: {x: 99.99999, y: 99.99999, z: 100}
+  m_LocalRotation: {x: -0, y: -0.000000029802322, z: 0.16430959, w: 0.9864089}
+  m_LocalPosition: {x: -0.030682057, y: 0.0062513724, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 6277813076821946423}
+  m_Father: {fileID: 3064605872449855852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &8781414831205205506
 Transform:
