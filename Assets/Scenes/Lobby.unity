@@ -65334,6 +65334,73 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &1963029114
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1963029115}
+  - component: {fileID: 1963029117}
+  - component: {fileID: 1963029116}
+  m_Layer: 0
+  m_Name: ColliderOficeDoor
+  m_TagString: PuertaOfice
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1963029115
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963029114}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: 0.0027188954, z: -0, w: 0.9999963}
+  m_LocalPosition: {x: 1.215459, y: 0.9643323, z: -3.997542}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 543450652315757191}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1963029116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963029114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80bb04ed626618044b180af4aa45f9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transition: {fileID: 976250040}
+--- !u!65 &1963029117
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1963029114}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.0988961, y: 1.7501864, z: 0.084302425}
+  m_Center: {x: -0.5146825, y: -0.000000029802322, z: -0.016353926}
 --- !u!1 &1971796220
 GameObject:
   m_ObjectHideFlags: 0
@@ -71252,6 +71319,7 @@ Transform:
   - {fileID: 5916467576605755361}
   - {fileID: 4418473097306036268}
   - {fileID: 6426448318950927728}
+  - {fileID: 1963029115}
   - {fileID: 311182071291625076}
   - {fileID: 2147197286}
   - {fileID: 4306643201751572509}

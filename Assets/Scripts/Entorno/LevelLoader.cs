@@ -12,13 +12,20 @@ public class LevelLoader : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            LoadLab();
+            if(this.tag == "PuertaOfice")
+            {
+                LoadLab(2);
+            }
+            else if(this.tag == "PuertaLab")
+            {
+                LoadLab(1);
+            }
         }
     }
 
-    public void LoadLab()
+    public void LoadLab(int level)
     {
-        StartCoroutine(LoadLevel(1));
+        StartCoroutine(LoadLevel(level));
     }
 
     IEnumerator LoadLevel(int levelIndex)
