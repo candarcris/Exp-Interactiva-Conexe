@@ -6,19 +6,19 @@ public class PathCharacter : MonoBehaviour
 {
     public float velocidad;
 
-    private float velocidad2 = 3;
+    public List<Transform> guiasRuta = new();
     public Transform guiaPersonaje;
     public Transform guiaLabPersonaje;
     public Transform guiaOficePersonaje;
-    private bool enPosicion = false;
+    public bool enPosicion = false;
     public bool irLab = false;
     public bool irOfice = false;
-    private bool observar = false;
+    public bool observar = false;
     public GameObject camara;
-        
-    void Start()
+
+    private void Start()
     {
-        
+        velocidad = 1;
     }
 
     void FixedUpdate()
@@ -56,7 +56,7 @@ public class PathCharacter : MonoBehaviour
     {
         if(irLab == true)
         {
-            float velocidadDesplazamiento = velocidad2 * Time.deltaTime;
+            float velocidadDesplazamiento = velocidad * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, guiaLabPersonaje.transform.position, velocidadDesplazamiento);
             observar = false;
         }
@@ -67,7 +67,7 @@ public class PathCharacter : MonoBehaviour
     {
         if(irOfice == true)
         {
-            float velocidadDesplazamiento = velocidad2 * Time.deltaTime;
+            float velocidadDesplazamiento = velocidad * Time.deltaTime;
             transform.position = Vector3.MoveTowards(transform.position, guiaOficePersonaje.transform.position, velocidadDesplazamiento);
             observar = false;
         }

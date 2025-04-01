@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class InteractuarPuertaOfice : MonoBehaviour
 {
-    public GameObject personaje;    
+    public PathCharacter personaje;    
     public GameObject vfxAura;
+    public Animator animator;
+
+    private void Awake()
+    {
+        animator = GetComponent<Animator>();
+    }
     public void OnLookEnter()
     {
-        this.GetComponent<Animator>().SetTrigger("AbrirOfice");
-        personaje.GetComponent<PathCharacter>().irOfice = true;
+        animator.SetTrigger("AbrirOfice");
+        personaje.irOfice = true;
         ActivarAura(false);
     }
 

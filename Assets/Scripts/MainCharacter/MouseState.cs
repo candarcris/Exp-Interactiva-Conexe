@@ -10,20 +10,15 @@ public class MouseState : MonoBehaviour
         Cursor.visible = false;
     }
 
-    private void Update() 
+    public void OnApplicationFocus(bool isFocus) 
     {
 
-    }
-
-    public void OnApplicationFocus(bool ApplicationIsBack) 
-    {
-
-        if(ApplicationIsBack == true)
+        if(isFocus == true)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
-        else if (ApplicationIsBack == false)
+        else if (isFocus == false)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

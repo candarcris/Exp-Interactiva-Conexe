@@ -1083,7 +1083,6 @@ GameObject:
   - component: {fileID: 782128436}
   - component: {fileID: 782128435}
   - component: {fileID: 782128434}
-  - component: {fileID: 782128433}
   m_Layer: 0
   m_Name: FPCharacter
   m_TagString: Player
@@ -1091,30 +1090,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &782128433
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 782128432}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4228fc9cf6522274b88be846e60562bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playFabManager: {fileID: 0}
-  characterData: {fileID: 0}
-  textElement: {fileID: 0}
-  textElement2: {fileID: 0}
-  fondoTextos: {fileID: 0}
-  conexito: {fileID: 0}
-  gafasObj: {fileID: 0}
-  luzCegadoraEfecto: {fileID: 1305820704}
-  guiaConexitoGafas: {fileID: 820760122}
-  efectoConexito: {fileID: 0}
-  recepcionista: {fileID: 0}
-  botonModificar: {fileID: 0}
 --- !u!114 &782128434
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1128,11 +1103,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 1
+  guiasRuta: []
   guiaPersonaje: {fileID: 0}
   guiaLabPersonaje: {fileID: 0}
   guiaOficePersonaje: {fileID: 0}
+  enPosicion: 0
   irLab: 0
   irOfice: 0
+  observar: 0
   camara: {fileID: 1309428341}
 --- !u!54 &782128435
 Rigidbody:
@@ -1246,7 +1224,7 @@ Transform:
   m_GameObject: {fileID: 782128432}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 1, z: -0, w: 0.00000026822087}
-  m_LocalPosition: {x: 0.54, y: 0.872, z: -14.1}
+  m_LocalPosition: {x: 0.54, y: 0.872, z: -4.67}
   m_LocalScale: {x: 0.76107, y: 0.76107, z: 0.76107}
   m_ConstrainProportionsScale: 0
   m_Children:

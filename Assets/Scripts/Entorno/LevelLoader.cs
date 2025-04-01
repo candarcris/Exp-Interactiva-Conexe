@@ -5,31 +5,36 @@ using UnityEngine.SceneManagement;
 
 public class LevelLoader : MonoBehaviour
 {
+    public PathCharacter personaje;
     public Animator transition;
+
+    private void Start()
+    {
+        personaje = FindAnyObjectByType<PathCharacter>();
+    }
 
     // Update is called once per frame
     private void OnTriggerEnter(Collider other) 
     {
         if(other.tag == "Player")
         {
-            if(this.tag == "PuertaOfice")
+            switch (this.tag)
             {
-                LoadLab(2);
-            }
-            else if(this.tag == "PuertaLab")
-            {
-                LoadLab(1);
+                case "PuertaLab":
+                    personaje.velocidad = 0;
+                    StartCoroutine(LoadLevel(1));
+                    break;
+
+                case "PuertaOfice":
+                    personaje.velocidad = 0;
+                    StartCoroutine(LoadLevel(2));
+                    break;
             }
         }
     }
 
-    public void LoadLab(int level)
-    {
-        StartCoroutine(LoadLevel(level));
-    }
-
     IEnumerator LoadLevel(int levelIndex)
-    {
+    {       
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(1);
