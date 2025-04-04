@@ -22,12 +22,12 @@ public class LevelLoader : MonoBehaviour
             {
                 case "PuertaLab":
                     personaje.velocidad = 0;
-                    StartCoroutine(LoadLevel(1));
+                    StartCoroutine(LoadLevel(2));
                     break;
 
                 case "PuertaOfice":
                     personaje.velocidad = 0;
-                    StartCoroutine(LoadLevel(2));
+                    StartCoroutine(LoadLevel(3));
                     break;
             }
         }

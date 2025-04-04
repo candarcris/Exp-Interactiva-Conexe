@@ -2,57 +2,59 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
-
-public class Character 
+public class Character
 {
     public string nombre;
-    public bool pNatural;
-    public bool empresa;
-    public string nombreEmpresa;
-    public string cargo;
     public string correo;
+    public string contraseña;
 
-    public Character(string nombre, bool pNatural, bool empresa, string nombreEmpresa, string cargo, string correo)
+    public Character(string nombre, string correo, string contraseña)
     {
         this.nombre = nombre;
-        this.pNatural = pNatural;
-        this.empresa = empresa;
-        this.nombreEmpresa = nombreEmpresa;
-        this.cargo = cargo;
         this.correo = correo;
+        this.contraseña = contraseña;
     }
 }
+
 public class CharacterData : MonoBehaviour
 {
-    public InputField nombreInput;
-    public Toggle personaNaturalToggle;
-    public Toggle empresaToggle;
-    public InputField nombreEmpresaInput;
-    public InputField cargoInput;
-    public InputField correoInput;
+    public TMP_InputField nombreInput;
+    public TMP_InputField correoInput;
+    public TMP_InputField contraseñaInput;
 
-    private void Awake() 
+    private void Awake()
     {
+        // Configurar los límites de caracteres
         nombreInput.characterLimit = 20;
-        nombreEmpresaInput.characterLimit = 20;
-        cargoInput.characterLimit = 40;
         correoInput.characterLimit = 40;
-    }
-    
+        contraseñaInput.characterLimit = 8;
 
-    public Character ReturnClass()
+        // Asegurar que siempre comience limpio
+        ClearUI();
+    }
+
+    public Character GetCharacterData()
     {
-        return new Character(nombreInput.text, personaNaturalToggle.isOn, empresaToggle.isOn, nombreEmpresaInput.text, cargoInput.text, correoInput.text);
+        return new Character(
+            nombreInput.text,
+            correoInput.text,
+            contraseñaInput.text
+        );
     }
 
-    public void SetUi(Character character)
+    public void SetUI(Character character)
     {
         nombreInput.text = character.nombre;
-        personaNaturalToggle.isOn = character.pNatural;
-        empresaToggle.isOn = character.empresa;
-        nombreEmpresaInput.text = character.nombre;
-        cargoInput.text = character.cargo;
         correoInput.text = character.correo;
+        contraseñaInput.text = character.contraseña;
+    }
+
+    public void ClearUI()
+    {
+        nombreInput.text = "";
+        correoInput.text = "";
+        contraseñaInput.text = "";
     }
 }

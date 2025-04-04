@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Interactuar : MonoBehaviour
 {
+    public GameObject fadeObjetos;
     public GameObject info;
     public GameObject mouse;
     public GameObject vfxAura;
@@ -13,6 +14,7 @@ public class Interactuar : MonoBehaviour
     {
 
         info.SetActive(true);
+        fadeObjetos.SetActive(true);
         SetPauseGame(true);
         SelectionManager.pcElegido = true;
         

@@ -68,11 +68,11 @@ public class DialogoEventos : MonoBehaviour
         }
     }
 
-    private void Update() 
+    private void FixedUpdate() 
     {
         ConexitoPoneGafas();
         Registro();
-        MirarEConexito();
+        //MirarEConexito();
         MirarConexito();
     }
 
@@ -192,11 +192,8 @@ public class DialogoEventos : MonoBehaviour
         recepcionista.SetTrigger("Register");
         interactividad.enabled = false;
         characterData.nombreInput.interactable = false;
-        characterData.personaNaturalToggle.interactable = false;
-        characterData.empresaToggle.interactable = false;
-        characterData.nombreEmpresaInput.interactable = false;
-        characterData.cargoInput.interactable = false;
         characterData.correoInput.interactable = false;
+        characterData.contraseñaInput.interactable = false;
         MouseLook.horizontalValue = 80;
 
         foreach (char character in textValueC5)

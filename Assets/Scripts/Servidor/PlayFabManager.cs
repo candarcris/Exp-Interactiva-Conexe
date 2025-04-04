@@ -3,112 +3,152 @@ using System.Collections.Generic;
 using UnityEngine;
 using PlayFab;
 using PlayFab.ClientModels;
+using UnityEngine.UI;
 
 public class PlayFabManager : MonoBehaviour
 {
-
     public CharacterData characterData;
     public DialogoEventos dialogoEventos;
     public static string nombreVisitante;
-    
-    
-    //string compareCorreo;
+    public Button aceptarLogin;
 
-    void Awake()
+    private void Awake()
     {
-        Login();
-    }
-
-    void Login()
-    {
-        var request = new LoginWithCustomIDRequest
+        if (!PlayerPrefs.HasKey("Registrado") || PlayerPrefs.GetInt("Registrado") == 0)
         {
-            CustomId = SystemInfo.deviceUniqueIdentifier,
-            CreateAccount = true
-        };
-        PlayFabClientAPI.LoginWithCustomID(request, OnSuccess, OnError);
+            PlayerPrefs.DeleteAll();
+            Debug.Log("No registrado: se borran los datos");
+        }
+        else
+        {
+            Debug.Log("Ya registrado: se conservan datos");
+        }
+
+        DontDestroyOnLoad(this.gameObject); // Si quieres que este objeto viva entre escenas
     }
 
-    //public void CompareData()
-    //{
-    //    var request = new ExecuteCloudScriptRequest
-    //    {
-    //        FunctionName = "Compare"
-    //    };
-    //    PlayFabClientAPI.ExecuteCloudScript(request, OnExecuteSuccess, OnError);
-    //}
+    private void Start()
+    {
+        aceptarLogin.onClick.AddListener(() => Login(characterData.correoInput.text, characterData.contraseñaInput.text));
+    }
 
-    //void OnExecuteSuccess(ExecuteCloudScriptResult result)
-    //{
-    //    
-    //}
+    // -------------------- LOGIN --------------------
+    public void Login(string email, string password)
+    {
+        var request = new LoginWithEmailAddressRequest
+        {
+            Email = email,
+            Password = password
+        };
+        PlayFabClientAPI.LoginWithEmailAddress(request, OnSuccessLogin, OnError);
+    }
 
+    void OnSuccessLogin(LoginResult result)
+    {
+        Debug.Log("Login exitoso");
+        GetData();  // Cargar datos del usuario
+    }
+
+    // -------------------- REGISTRO --------------------
+    public void Register(string email, string password)
+    {
+        var request = new RegisterPlayFabUserRequest
+        {
+            Email = email,
+            Password = password,
+            RequireBothUsernameAndEmail = false
+        };
+        PlayFabClientAPI.RegisterPlayFabUser(request, OnSuccessRegister, OnError);
+    }
+
+    void OnSuccessRegister(RegisterPlayFabUserResult result)
+    {
+        Debug.Log("Registro exitoso");
+        SaveData();  // Guardar los datos del usuario en PlayFab
+
+        PlayerPrefs.SetInt("Registrado", 1);
+        PlayerPrefs.Save(); // Opcional pero seguro
+    }
+
+    // -------------------- GUARDAR DATOS --------------------
     public void SaveData()
     {
+        Character character = characterData.GetCharacterData();
+
         var request = new UpdateUserDataRequest
         {
             Data = new Dictionary<string, string>
             {
-                { "Nombre", characterData.nombreInput.text },
-                { "Natural", characterData.personaNaturalToggle.isOn.ToString() },
-                { "Empresa", characterData.empresaToggle.isOn.ToString() },
-                { "NEmpresa", characterData.nombreEmpresaInput.text },
-                { "Cargo", characterData.cargoInput.text },
-                { "Correo", characterData.correoInput.text }
+                { "Nombre", character.nombre },
+                { "Correo", character.correo },
+                { "Contraseña", character.contraseña }
             }
         };
         PlayFabClientAPI.UpdateUserData(request, OnDataSend, OnError);
+
+        PlayerPrefs.SetString("Nombre", character.nombre);
+        PlayerPrefs.SetString("Correo", character.correo);
+        PlayerPrefs.SetInt("Registrado", 1);
+        PlayerPrefs.Save();
     }
 
     void OnDataSend(UpdateUserDataResult result)
     {
-        Debug.Log("Successful user data send");
+        Debug.Log("Datos guardados en PlayFab");
     }
 
-
+    // -------------------- OBTENER DATOS --------------------
     public void GetData()
     {
-        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataRecieved, OnError);
+        PlayFabClientAPI.GetUserData(new GetUserDataRequest(), OnDataReceived, OnError);
     }
 
-    void OnDataRecieved(GetUserDataResult result)
+    void OnDataReceived(GetUserDataResult result)
     {
-        //solucionar el problema de revisar si el usuario esta o no registrado al comienzo del juego
-        
-        if(result.Data.ContainsKey("Nombre"))
+        if (result.Data.ContainsKey("Nombre"))
         {
             nombreVisitante = result.Data["Nombre"].Value;
         }
-        
-        Debug.Log("Recieved user data");
-        if(result.Data.ContainsKey("Nombre") && result.Data["Nombre"].Value != null && result.Data.ContainsKey("Correo") && result.Data["Correo"].Value != null)
+
+        Debug.Log("Datos recibidos");
+
+        if (result.Data.ContainsKey("Nombre") && result.Data.ContainsKey("Correo"))
         {
             Debug.Log("Usuario registrado");
             dialogoEventos.UsuarioRegistrado();
-            
-            characterData.personaNaturalToggle.isOn = bool.Parse(result.Data["Natural"].Value);
-            characterData.empresaToggle.isOn = bool.Parse(result.Data["Empresa"].Value);
-            characterData.nombreInput.text = result.Data["Nombre"].Value;
-            characterData.nombreEmpresaInput.text = result.Data["NEmpresa"].Value;
-            characterData.cargoInput.text = result.Data["Cargo"].Value;
-            characterData.correoInput.text = result.Data["Correo"].Value;
+
+            Character character = new Character(
+                result.Data["Nombre"].Value,
+                result.Data["Correo"].Value,
+                result.Data["Contraseña"].Value
+            );
+
+            characterData.SetUI(character);
         }
         else
         {
-            Debug.Log("Usuario nuevo / Datos incompletos");
+            Debug.Log("Usuario nuevo o sin datos");
             dialogoEventos.UsuarioNoRegistrado();
+            characterData.ClearUI();
         }
     }
 
-    
-    void OnSuccess(LoginResult result)
-    {
-        Debug.Log("Successful login/account create!");
-    }
-
+    // -------------------- ERROR HANDLING --------------------
     void OnError(PlayFabError error)
     {
-        Debug.Log("Error while login/creating account!");
-        Debug.Log(error.GenerateErrorReport());
+        Debug.Log("Error en PlayFab: " + error.GenerateErrorReport());
+    }
+
+    private void OnApplicationQuit()
+    {
+        if (!PlayerPrefs.HasKey("Registrado") || PlayerPrefs.GetInt("Registrado") == 0)
+        {
+            PlayerPrefs.DeleteAll();
+            Debug.Log("El jugador no estaba registrado, se borran los PlayerPrefs al salir.");
+        }
+        else
+        {
+            Debug.Log("Jugador registrado, se conservan los datos.");
+        }
     }
 }

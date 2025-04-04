@@ -7,6 +7,11 @@ public class InteractuarPuertaLab : MonoBehaviour
     public GameObject personaje;    
     public GameObject vfxAura;
 
+    private void Awake()
+    {
+        
+    }
+
     public void OnLookEnter()
     {
         this.GetComponent<Animator>().SetTrigger("AbrirLab");
