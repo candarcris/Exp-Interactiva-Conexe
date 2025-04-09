@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class PlayFabManager : MonoBehaviour
 {
     public CharacterData characterData;
-    public DialogoEventos dialogoEventos;
     public static string nombreVisitante;
     public Button aceptarLogin;
 
@@ -115,8 +114,6 @@ public class PlayFabManager : MonoBehaviour
         if (result.Data.ContainsKey("Nombre") && result.Data.ContainsKey("Correo"))
         {
             Debug.Log("Usuario registrado");
-            dialogoEventos.UsuarioRegistrado();
-
             Character character = new Character(
                 result.Data["Nombre"].Value,
                 result.Data["Correo"].Value,
@@ -128,7 +125,6 @@ public class PlayFabManager : MonoBehaviour
         else
         {
             Debug.Log("Usuario nuevo o sin datos");
-            dialogoEventos.UsuarioNoRegistrado();
             characterData.ClearUI();
         }
     }

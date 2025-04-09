@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab63c7f4ed398d74eb49b8092671d9db, type: 3}
+  m_Name: DialogoBienvenida
+  m_EditorClassIdentifier: 
+  lineas:
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: "Hola, Bienvenido a Conexe, nos alegra\ntener aqu\xED a una persona tan
+      importante"
+    activarEvento: 1
+    idEvento: SaludoBienvenida
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: "Nos informaron sobre tu inter\xE9s por conocer nuestras\ninstalaciones,
+      en unos momentos daremos inicio a la visita"
+    activarEvento: 0
+    idEvento: 
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: Pero antes quiero presentarte a alguien muy especial...
+    activarEvento: 0
+    idEvento: 
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: ...
+    activarEvento: 1
+    idEvento: PreparaConexito
+  - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
+    texto: "Saludos, soy EXE - E1, soy una IA, mi funci\xF3n \nes asistir en todos
+      los procesos de la compa\xF1\xEDa"
+    activarEvento: 1
+    idEvento: ApareceConexito
+  - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
+    texto: "Estas instalaciones poseen mas informaci\xF3n de la que se ve a\nsimple
+      vista, con estos lentes tendr\xE1s acceso a todo este contenido"
+    activarEvento: 0
+    idEvento: 
+  - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
+    texto: ...
+    activarEvento: 1
+    idEvento: RecibirLentes
