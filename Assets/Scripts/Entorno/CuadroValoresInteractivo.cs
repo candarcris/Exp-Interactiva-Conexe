@@ -7,6 +7,6 @@ public class CuadroValoresInteractivo : ObjetoInteractivo
     {
         base.ObjetoSeleccionado();
         _cuadroValores3D.gameObject.SetActive(true);
-        Debug.Log("Espichado el cuadro");
+        Debug.Log("Cuadro valores seleccionado.");
     }
 }

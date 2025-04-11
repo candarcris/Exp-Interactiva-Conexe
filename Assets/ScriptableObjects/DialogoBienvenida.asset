@@ -17,7 +17,7 @@ MonoBehaviour:
     texto: "Hola, Bienvenido a Conexe, nos alegra\ntener aqu\xED a una persona tan
       importante"
     activarEvento: 1
-    idEvento: SaludoBienvenida
+    idEvento: Lobby_SaludoBienvenida
   - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
     texto: "Nos informaron sobre tu inter\xE9s por conocer nuestras\ninstalaciones,
       en unos momentos daremos inicio a la visita"
@@ -30,12 +30,12 @@ MonoBehaviour:
   - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
     texto: ...
     activarEvento: 1
-    idEvento: PreparaConexito
+    idEvento: Lobby_PreparaConexito
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
     texto: "Saludos, soy EXE - E1, soy una IA, mi funci\xF3n \nes asistir en todos
       los procesos de la compa\xF1\xEDa"
     activarEvento: 1
-    idEvento: ApareceConexito
+    idEvento: Lobby_ApareceConexito
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
     texto: "Estas instalaciones poseen mas informaci\xF3n de la que se ve a\nsimple
       vista, con estos lentes tendr\xE1s acceso a todo este contenido"
@@ -44,4 +44,4 @@ MonoBehaviour:
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
     texto: ...
     activarEvento: 1
-    idEvento: RecibirLentes
+    idEvento: Lobby_RecibirLentes

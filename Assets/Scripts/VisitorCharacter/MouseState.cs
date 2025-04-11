@@ -8,9 +8,10 @@ public class MouseState : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
+        var instances = FindObjectsByType<MouseState>(FindObjectsSortMode.None);
+        if (instances.Length > 1)
         {
-            Destroy(gameObject); // evita duplicados
+            Destroy(gameObject);
             return;
         }
 
@@ -18,24 +19,20 @@ public class MouseState : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    void Start()
+    private void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        LockCursor(true);
     }
 
-    public void OnApplicationFocus(bool isFocus) 
+    private void OnApplicationFocus(bool hasFocus)
     {
+        LockCursor(hasFocus);
+    }
 
-        if(isFocus == true)
-        {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = false;
-        }
-        else if (isFocus == false)
-        {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
-        }
+    public void LockCursor(bool locked)
+    {
+        Cursor.lockState = locked ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = !locked;
     }
 }
+

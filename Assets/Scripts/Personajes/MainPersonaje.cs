@@ -13,6 +13,8 @@ public abstract class MainPersonaje : MonoBehaviour
         }
     }
 
+    public Animator Animator => _animator;
+
     public void DesactivarAnimator()
     {
         _animator.enabled = false;

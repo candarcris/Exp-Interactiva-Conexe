@@ -4,80 +4,81 @@ using UnityEngine;
 
 public class PathCharacter : MonoBehaviour
 {
-    public float velocidad;
+    private float velocidad = 1;
+    [SerializeField] private Transform puntoRutaActual;
+    [SerializeField] private PuntoDeRuta puntoSeleccionado;
 
     public List<Transform> guiasRuta = new();
-    public Transform guiaPersonaje;
-    public Transform guiaLabPersonaje;
-    public Transform guiaOficePersonaje;
     public bool enPosicion = false;
-    public bool irLab = false;
-    public bool irOfice = false;
     public bool observar = false;
+    public bool enfocar = false;
     public GameObject camara;
+    private MouseLookController _mouseLookController;
+    private Transform objetivoActual;
 
-    private void Start()
+    private void Awake()
     {
-        velocidad = 1;
+        _mouseLookController = camara.GetComponent<MouseLookController>();
     }
 
     void FixedUpdate()
     {
         Observacion();
-        Desplazamiento();
-        DesplazamientoLab();
-        DesplazamientoOfice();
+        if (!enPosicion && puntoRutaActual != null)
+        {
+            Desplazamiento(puntoRutaActual);
+        }
+        if (enfocar && objetivoActual != null)
+        {
+            camara.transform.LookAt(objetivoActual.position);
+        }
     }
 
-    private void OnTriggerEnter(Collider other) 
+    void Desplazamiento(Transform puntoRuta)
     {
-        if(other.tag == "PuntoDeRuta")
+        float velocidadDesplazamiento = velocidad * Time.deltaTime;
+        transform.position = Vector3.MoveTowards(transform.position, puntoRuta.position, velocidadDesplazamiento);
+
+        if (Vector3.Distance(transform.position, puntoRuta.position) < 0.1f)
         {
             enPosicion = true;
-            observar = true;
-            
-            if(guiaPersonaje.GetComponent<Collider>())
+            puntoSeleccionado.dialogoTrigger?.EjecutarDialogo();
+            if (puntoSeleccionado != null && puntoSeleccionado.activarObservacion)
             {
-                guiaPersonaje.GetComponent<Collider>().enabled = false;
+                observar = true;
             }
+
+            puntoRutaActual = null;
+            puntoSeleccionado = null;
         }
     }
 
-    void Desplazamiento()
+    public void MoverAPunto(PuntoDeRuta punto)
     {
-        if(enPosicion == false)
-        {
-            float velocidadDesplazamiento = velocidad * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, guiaPersonaje.position, velocidadDesplazamiento);
-        }
-    }
+        puntoRutaActual = punto.transform;
+        puntoSeleccionado = punto;
 
-    void DesplazamientoLab()
-    {
-        if(irLab == true)
-        {
-            float velocidadDesplazamiento = velocidad * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, guiaLabPersonaje.transform.position, velocidadDesplazamiento);
-            observar = false;
-        }
-        
-    }
-
-    void DesplazamientoOfice()
-    {
-        if(irOfice == true)
-        {
-            float velocidadDesplazamiento = velocidad * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(transform.position, guiaOficePersonaje.transform.position, velocidadDesplazamiento);
-            observar = false;
-        }
+        enPosicion = false;
+        observar = false;
     }
 
     void Observacion()
     {
         if(observar == true)
         {
-            camara.GetComponent<MouseLook>().ActivarMouseLook();
+            _mouseLookController.ActivarMouseLook();
         }
+    }
+
+    public void SetEnfoque(Transform objetivo)
+    {
+        objetivoActual = objetivo;
+        enfocar = true;
+    }
+
+    public void CancelarEnfoque()
+    {
+        objetivoActual = null;
+        enfocar = false;
     }
 }

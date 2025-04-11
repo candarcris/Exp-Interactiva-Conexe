@@ -3,12 +3,13 @@ using UnityEngine;
 public class DialogoTrigger : MonoBehaviour
 {
     public Dialogo dialogo; // ScriptableObject asignado desde el Inspector
+    public bool activarDialogo;
 
-    private void OnTriggerEnter(Collider other)
+    public void EjecutarDialogo()
     {
-        if (other.CompareTag("Player"))
+        if (activarDialogo)
         {
-            DialogoUI.Instance.IniciarDialogo(dialogo); // <-- Aquí se llama el diálogo
+            DialogoUI.Instance.IniciarDialogo(dialogo);
         }
     }
 }

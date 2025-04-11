@@ -1,41 +1,47 @@
 using UnityEngine;
+using System;
 using System.Collections.Generic;
 
 public class ManagerLocator : MonoBehaviour
 {
     public static ManagerLocator Instance { get; private set; }
-    public PlayFabManager _playfabManager;
-    public EventManager _eventManager;
-    public MouseState _mouseState;
-    public SelectionManager _selectionManager;
 
+    private Dictionary<Type, object> _managers = new();
 
     private void Awake()
     {
         if (Instance != null && Instance != this)
         {
-            // Si ya existe una instancia, destruye esta copia
             Destroy(gameObject);
             return;
         }
+
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
 
-        if (_playfabManager == null)
+    public void Register<T>(T manager) where T : class
+    {
+        var type = typeof(T);
+        if (!_managers.ContainsKey(type))
         {
-            _playfabManager = GetComponent<PlayFabManager>();
+            _managers.Add(type, manager);
         }
-        if(_eventManager == null)
+        else
         {
-            _eventManager = GetComponent<EventManager>();
+            Debug.LogWarning($"Manager del tipo {type} ya está registrado.");
         }
-        if (_mouseState == null)
-        {  
-            _mouseState = GetComponent<MouseState>();
-        }
-        if(_selectionManager == null)
+    }
+
+    public T Get<T>() where T : class
+    {
+        var type = typeof(T);
+        if (_managers.TryGetValue(type, out var manager))
         {
-            _selectionManager = GetComponent<SelectionManager>();
+            return manager as T;
         }
+
+        Debug.LogWarning($"Manager del tipo {type} no está registrado.");
+        return null;
     }
 }

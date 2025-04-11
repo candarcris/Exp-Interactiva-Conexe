@@ -20,6 +20,9 @@ public class DialogoUI : MonoBehaviour
     public bool textoCompletado;
     private Animator dialogueAnimator;
 
+    private IGameManager gameManagerInterface;
+    private IEventSystem eventoInterface;
+
 
     private void Awake()
     {
@@ -29,9 +32,14 @@ public class DialogoUI : MonoBehaviour
             Destroy(gameObject); // evita duplicados
             return;
         }
-
         Instance = this;
         DontDestroyOnLoad(gameObject);
+    }
+
+    private void Start()
+    {
+        gameManagerInterface = ManagerLocator.Instance.Get<IGameManager>();
+        eventoInterface = ManagerLocator.Instance.Get<IEventSystem>();
     }
 
     public void IniciarDialogo(Dialogo dialogo)
@@ -39,6 +47,7 @@ public class DialogoUI : MonoBehaviour
         dialogoActual = dialogo;
         indice = 0;
         MostrarLineaActual();
+        gameManagerInterface.CambiarContexto(GameContext.EnDialogo);
     }
 
     public void MostrarLineaActual()
@@ -57,7 +66,7 @@ public class DialogoUI : MonoBehaviour
 
         if (linea.activarEvento)
         {
-            ManagerLocator.Instance._eventManager.EjecutarEvento(linea.idEvento);
+            eventoInterface.EjecutarEvento(linea.idEvento);
         }
     }
 
@@ -96,17 +105,17 @@ public class DialogoUI : MonoBehaviour
     public void FinalizarDialogo()
     {
         dialogueAnimator.SetTrigger("DialogueOut");
+        gameManagerInterface.CambiarContexto(GameContext.Default);
         Debug.Log("Fin del diálogo");
-        // Ocultar panel o pasar a siguiente evento
     }
 
     public void PasarSiguienteLinea()
     {
-        if(textoCompletado)
+        if (textoCompletado)
         {
-            if (Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) // o la tecla que quieras
+            if ((Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter)) && gameManagerInterface.EstaEnContexto(GameContext.EnDialogo))
             {
-                DialogoUI.Instance.SiguienteLinea();
+                SiguienteLinea();
             }
         }
     }
