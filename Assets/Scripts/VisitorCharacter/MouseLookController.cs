@@ -9,15 +9,31 @@ public class MouseLookController : MonoBehaviour
     public static float speed = 5;
     public static float horizontalValue = 60;
 
-    public void ActivarMouseLook()
+    private bool observacionActiva = false;
+
+
+    void Update()
     {
-        horizontal += speed * Input.GetAxis("Mouse X");
-        horizontal = Mathf.Clamp(horizontal, -horizontalValue, horizontalValue);
+        if (observacionActiva)
+        {
+            horizontal += speed * Input.GetAxis("Mouse X");
+            horizontal = Mathf.Clamp(horizontal, -horizontalValue, horizontalValue);
 
-        vertical -= speed * Input.GetAxis("Mouse Y");
-        vertical = Mathf.Clamp(vertical, -15, 30);
+            vertical -= speed * Input.GetAxis("Mouse Y");
+            vertical = Mathf.Clamp(vertical, -15, 30);
 
-        transform.eulerAngles = new Vector3(vertical, horizontal, 0.0f);
+            transform.eulerAngles = new Vector3(vertical, horizontal, 0.0f);
+        }
+    }
+
+    public void ActivarObservacion()
+    {
+        observacionActiva = true;
+    }
+
+    public void DesactivarObservacion()
+    {
+        observacionActiva = false;
     }
 
     public void SetHorizontalLimit(float value)

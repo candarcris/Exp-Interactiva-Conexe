@@ -1,9 +1,13 @@
+using NUnit.Framework;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
 
 public class DialogoTrigger : MonoBehaviour
 {
-    public Dialogo dialogo; // ScriptableObject asignado desde el Inspector
+    [SerializeField] private Dialogo dialogo; 
     public bool activarDialogo;
+
 
     public void EjecutarDialogo()
     {

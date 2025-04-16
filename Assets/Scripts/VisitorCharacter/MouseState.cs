@@ -26,7 +26,7 @@ public class MouseState : MonoBehaviour
 
     private void OnApplicationFocus(bool hasFocus)
     {
-        LockCursor(hasFocus);
+        //LockCursor(hasFocus);
     }
 
     public void LockCursor(bool locked)

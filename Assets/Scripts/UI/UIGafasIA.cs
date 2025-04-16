@@ -7,14 +7,23 @@ public class UIGafasIA : MonoBehaviour
     public List<GameObject> _itemsInterfazList = new();
     [SerializeField] private Conexito _conexito;
 
-    private void Awake()
+    private void Start()
     {
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas += MostrarInterfazGafas;
+        }
         DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void OnDestroy()
     {
-        _conexito.OnGafasEntregadas += MostrarInterfazGafas;
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas -= MostrarInterfazGafas;
+        }
     }
 
     public void MostrarInterfazGafas()

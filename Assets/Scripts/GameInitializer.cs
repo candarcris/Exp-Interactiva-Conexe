@@ -2,18 +2,39 @@ using UnityEngine;
 
 public class GameInitializer : MonoBehaviour
 {
-    [SerializeField] private GameManager _gameManager;
-    [SerializeField] private UIManager _uiManager;
-    [SerializeField] private EventSystem _eventSystem;
+    [SerializeField] private GameObject _gameManagerPrefab;
+    [SerializeField] private GameObject _uiManagerPrefab;
+    [SerializeField] private GameObject _eventSystemPrefab;
+    [SerializeField] private GameObject _playerSessionPrefab;
+    [SerializeField] private GameObject _interactiveEventManagerPrefab;
+    [SerializeField] private GameObject _pathCharacterPrefab;
 
     private void Awake()
     {
-        // Registrar en el orden correcto
-        ManagerLocator.Instance.Register<IGameManager>(_gameManager);
-        ManagerLocator.Instance.Register<UIManager>(_uiManager);
-        ManagerLocator.Instance.Register<IEventSystem>(_eventSystem);
+        if (FindFirstObjectByType<GameManager>() == null)
+            Instantiate(_gameManagerPrefab);
 
-        // Puedes hacer logs para asegurarte
-        Debug.Log("Managers registrados desde GameInit");
+        if (FindFirstObjectByType<UIManager>() == null)
+            Instantiate(_uiManagerPrefab);
+
+        if (FindFirstObjectByType<EventSystem>() == null)
+            Instantiate(_eventSystemPrefab);
+
+        if (FindFirstObjectByType<PlayerSessionManager>() == null)
+            Instantiate(_playerSessionPrefab);
+
+        if (FindFirstObjectByType<InteractiveEventManager>() == null)
+            Instantiate(_interactiveEventManagerPrefab);
+
+        if (FindFirstObjectByType<PathCharacter>() == null)
+            Instantiate(_pathCharacterPrefab);
+
+        // Registrar
+        ManagerLocator.Instance.Register<IGameManager>(FindFirstObjectByType<GameManager>());
+        ManagerLocator.Instance.Register<UIManager>(FindFirstObjectByType<UIManager>());
+        ManagerLocator.Instance.Register<IEventSystem>(FindFirstObjectByType<EventSystem>());
+        ManagerLocator.Instance.Register<IPlayerSessionManager>(FindFirstObjectByType<PlayerSessionManager>());
+        ManagerLocator.Instance.Register<IInteractiveEventManager>(FindFirstObjectByType<InteractiveEventManager>());
+        ManagerLocator.Instance.Register<IPathCharacter>(FindFirstObjectByType<PathCharacter>());
     }
 }

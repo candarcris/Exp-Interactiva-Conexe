@@ -14,13 +14,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lineas:
   - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
-    texto: "Hola, Bienvenido a Conexe, nos alegra\ntener aqu\xED a una persona tan
-      importante"
+    texto: "Hola, Bienvenido a Conexe, hoy daremos un recorrido por \nnuestra compa\xF1\xEDa,
+      si ya nos has visitado antes, por favor \ninicia sesi\xF3n, si no, puedes registrarte
+      o continuar sin hacerlo."
     activarEvento: 1
     idEvento: Lobby_SaludoBienvenida
   - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
-    texto: "Nos informaron sobre tu inter\xE9s por conocer nuestras\ninstalaciones,
-      en unos momentos daremos inicio a la visita"
+    texto: ...
+    activarEvento: 1
+    idEvento: Lobby_RevisarCredenciales
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: Nos alegra mucho tu visita, en unos momentos daremos inicio a la visita
     activarEvento: 0
     idEvento: 
   - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
@@ -32,13 +36,15 @@ MonoBehaviour:
     activarEvento: 1
     idEvento: Lobby_PreparaConexito
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
-    texto: "Saludos, soy EXE - E1, soy una IA, mi funci\xF3n \nes asistir en todos
-      los procesos de la compa\xF1\xEDa"
+    texto: "Saludos, soy EXE - E1, soy una inteligencia artificial (IA) \ny llevo
+      control de todo aqu\xED, analizo datos, proporciono \nsoluciones, controlo
+      maquinaria, doy consejos de pareja..."
     activarEvento: 1
     idEvento: Lobby_ApareceConexito
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
-    texto: "Estas instalaciones poseen mas informaci\xF3n de la que se ve a\nsimple
-      vista, con estos lentes tendr\xE1s acceso a todo este contenido"
+    texto: "jeje... como ves, tengo muchas funciones y capacidades, \nuna de ellas
+      es hacer que puedas interactuar y obtener \nmucha informaci\xF3n de todo lo
+      que veas, con estos LENTES."
     activarEvento: 0
     idEvento: 
   - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}

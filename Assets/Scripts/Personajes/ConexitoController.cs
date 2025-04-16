@@ -15,7 +15,20 @@ public class ConexitoController : MonoBehaviour
 
     private void Start()
     {
-        _conexito.OnGafasEntregadas += EntregarGafas;
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas += EntregarGafas;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas -= EntregarGafas;
+        }
     }
 
     private void FixedUpdate()

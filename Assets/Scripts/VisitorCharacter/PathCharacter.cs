@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathCharacter : MonoBehaviour
+public class PathCharacter : MonoBehaviour, IPathCharacter
 {
     private float velocidad = 1;
     [SerializeField] private Transform puntoRutaActual;
@@ -10,7 +10,6 @@ public class PathCharacter : MonoBehaviour
 
     public List<Transform> guiasRuta = new();
     public bool enPosicion = false;
-    public bool observar = false;
     public bool enfocar = false;
     public GameObject camara;
     private MouseLookController _mouseLookController;
@@ -21,9 +20,14 @@ public class PathCharacter : MonoBehaviour
         _mouseLookController = camara.GetComponent<MouseLookController>();
     }
 
+    private void Start()
+    {
+        DontDestroyOnLoad(gameObject);
+        PoderObservar(false);
+    }
+
     void FixedUpdate()
     {
-        Observacion();
         if (!enPosicion && puntoRutaActual != null)
         {
             Desplazamiento(puntoRutaActual);
@@ -45,7 +49,7 @@ public class PathCharacter : MonoBehaviour
             puntoSeleccionado.dialogoTrigger?.EjecutarDialogo();
             if (puntoSeleccionado != null && puntoSeleccionado.activarObservacion)
             {
-                observar = true;
+                PoderObservar(true);
             }
 
             puntoRutaActual = null;
@@ -59,26 +63,31 @@ public class PathCharacter : MonoBehaviour
         puntoSeleccionado = punto;
 
         enPosicion = false;
-        observar = false;
-    }
-
-    void Observacion()
-    {
-        if(observar == true)
-        {
-            _mouseLookController.ActivarMouseLook();
-        }
     }
 
     public void SetEnfoque(Transform objetivo)
     {
+        PoderObservar(false);
         objetivoActual = objetivo;
         enfocar = true;
     }
 
     public void CancelarEnfoque()
     {
+        PoderObservar(true);
         objetivoActual = null;
         enfocar = false;
+    }
+
+    public void PoderObservar(bool value)
+    {
+        if (value)
+        {
+            _mouseLookController.ActivarObservacion();
+        }
+        else
+        {
+            _mouseLookController.DesactivarObservacion();
+        }
     }
 }

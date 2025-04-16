@@ -3,18 +3,10 @@ using UnityEngine;
 
 public class EventSystem : MonoBehaviour, IEventSystem
 {
-    private static EventSystem _instance;
     private Dictionary<string, IEvent> _eventos = new();
 
     private void Awake()
     {
-        if (_instance != null && _instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        _instance = this;
         DontDestroyOnLoad(gameObject);
     }
 

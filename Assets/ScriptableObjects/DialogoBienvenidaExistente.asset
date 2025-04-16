@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab63c7f4ed398d74eb49b8092671d9db, type: 3}
+  m_Name: DialogoBienvenidaExistente
+  m_EditorClassIdentifier: 
+  lineas:
+  - personaje: {fileID: 11400000, guid: b6d82c138cdc0a948b39f2b40a64be41, type: 2}
+    texto: "Bienvenido de vuelta, esperamos que \ncontinues disfrutando de tu visita."
+    activarEvento: 0
+    idEvento: 
+  - personaje: {fileID: 11400000, guid: d0929e208d22eb141b2b54379c36f26a, type: 2}
+    texto: No te olvides de tus lentes!.
+    activarEvento: 1
+    idEvento: Lobby_DeNuevoRecibeLentes

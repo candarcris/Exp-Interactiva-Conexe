@@ -15,7 +15,6 @@ public class UIManager : MonoBehaviour
 
     private void Start()
     {
-        //ManagerLocator.Instance.Register<UIManager>(this);
         gameManagerInterface = ManagerLocator.Instance.Get<IGameManager>();
     }
 
@@ -25,8 +24,7 @@ public class UIManager : MonoBehaviour
         _uiActual = nuevoUI;
         _uiActual?.SetActive(true);
 
-        PausarJuego(true);
-        gameManagerInterface.CambiarContexto(GameContext.EnMenu);
+        gameManagerInterface.CambiarContexto(GameContext.EnInteraccion);
     }
 
     public void OcultarUIActual()
@@ -37,13 +35,11 @@ public class UIManager : MonoBehaviour
             _uiActual = null;
         }
 
-        PausarJuego(false);
         gameManagerInterface.CambiarContexto(GameContext.Default);
     }
 
     private void PausarJuego(bool pausar)
     {
         gameManagerInterface.PausarJuego(pausar);
-        MouseState.Instance.LockCursor(pausar);
     }
 }

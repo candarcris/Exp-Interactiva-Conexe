@@ -3,9 +3,35 @@ using UnityEngine;
 public class RaycastSelector : MonoBehaviour
 {
     public Camera _camera;
+    public bool _dispararRayCast;
+
+    private void Start()
+    {
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas += DispararRaycast;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        var eventManager = ManagerLocator.Instance.Get<IInteractiveEventManager>();
+        if (eventManager != null)
+        {
+            eventManager.OnGafasEntregadas -= DispararRaycast;
+        }
+    }
+
+    public void DispararRaycast()
+    {
+        _dispararRayCast = true;
+    }
 
     void Update()
     {
+        if (!_dispararRayCast) return;
+
         Ray ray = _camera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit hit;
 

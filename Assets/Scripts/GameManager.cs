@@ -13,7 +13,6 @@ public class GameManager : MonoBehaviour, IGameManager
 {
     public GameContext ContextoActual { get; private set; } = GameContext.Default;
     private bool _estaPausado = false;
-    public string contextoText;
 
     private void Awake()
     {
@@ -21,21 +20,14 @@ public class GameManager : MonoBehaviour, IGameManager
         CambiarContexto(GameContext.Default);
     }
 
-    private void Start()
-    {
-        //ManagerLocator.Instance.Register<IGameManager>(this);
-    }
-
     public void CambiarContexto(GameContext nuevoContexto)
     {
         ContextoActual = nuevoContexto;
-        contextoText = ContextoActual.ToString();
         Debug.Log($"Contexto cambiado a: {nuevoContexto}");
     }
 
     public bool EstaEnContexto(GameContext contexto)
     {
-        contextoText = contexto.ToString();
         return ContextoActual == contexto;
     }
 

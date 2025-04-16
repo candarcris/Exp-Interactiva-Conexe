@@ -20,6 +20,9 @@ public class DialogoUI : MonoBehaviour
     public bool textoCompletado;
     private Animator dialogueAnimator;
 
+    public int IndiceActual => indice;
+    public Dialogo DialogoActual => dialogoActual;
+
     private IGameManager gameManagerInterface;
     private IEventSystem eventoInterface;
 
@@ -102,11 +105,17 @@ public class DialogoUI : MonoBehaviour
         }
     }
 
+    public void ContinuarDialogo()
+    {
+        dialogueAnimator.SetTrigger("DialogueIn");
+        gameManagerInterface.CambiarContexto(GameContext.EnDialogo);
+        SiguienteLinea();
+    }
+
     public void FinalizarDialogo()
     {
         dialogueAnimator.SetTrigger("DialogueOut");
         gameManagerInterface.CambiarContexto(GameContext.Default);
-        Debug.Log("Fin del diálogo");
     }
 
     public void PasarSiguienteLinea()
